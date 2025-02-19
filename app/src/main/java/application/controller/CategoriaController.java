@@ -29,14 +29,14 @@ public class CategoriaController {
         return "categoria/insert";
     }
 
-    @RequestMapping(value = "/insert", method RequestMethod.POST) 
+    @RequestMapping(value = "/insert", method = RequestMethod.POST) 
     public String insert(@RequestParam("nome") String nome) { 
-        Categoria categoria new Categoria(); 
+        Categoria categoria = new Categoria(); 
         categoria.setNome (nome); 
         
         categoriaRepo.save(categoria); 
         
-        return "redirect:/categoria/list"
+        return "redirect:/categoria/list";
     }
 
     @RequestMapping("/update") 
@@ -44,7 +44,7 @@ public class CategoriaController {
         @RequestParam("id") long id,
         Model ui) { 
             
-    Optional<Categoria> categoria categoriaRepo.findById(id); 
+    Optional<Categoria> categoria = categoriaRepo.findById(id); 
     
     if(categoria.isPresent()) {
         ui.addAttribute("categoria", categoria.get()); 
@@ -55,12 +55,12 @@ public class CategoriaController {
 
 }
 
-    @RequestMapping(value = "/update", method RequestMethod.POST) 
+    @RequestMapping(value = "/update", method = RequestMethod.POST) 
     public string update( 
         @RequestParam("id") long id, 
         @RequestParam("nome") String nome) {
             
-        Optional<Categorias categoria categoriaRepo.findById(id);
+        Optional<Categoria> categoria = categoriaRepo.findById(id);
         
         if(categoria.isPresent()) { 
             categoria.get().setNome (nome);
@@ -88,7 +88,7 @@ public class CategoriaController {
         
     }    
         
-    @RequestMapping(value = "/delete", method RequestMethod. POST) 
+    @RequestMapping(value = "/delete", method = RequestMethod. POST) 
     public String delete(@RequestParam("id") long id) { 
         categoriaRepo.deleteById(id); 
         
